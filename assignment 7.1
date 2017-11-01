@@ -1,0 +1,48 @@
+ASSIGNMENT 7.1
+
+Problem
+
+calculate number of employee curusponding to each skill in the data set. 
+
+
+
+hive> create table emp_details
+    > (emp_name string,
+    > unit string,
+    > exp int,
+    > location string)
+    > row format delimited
+    > fields terminated by ',';
+OK
+Time taken: 2.301 seconds
+hive> load data                       
+    > inpath '/vishnu/emp_details.txt'
+    > into table emp_details;         
+Loading data to table default.emp_details
+Table default.emp_details stats: [numFiles=1, totalSize=159]
+OK
+Time taken: 1.811 seconds
+hive> select *from emp_details;
+OK
+Amit	Big Data	1	BBSR
+Venkat	Web Technology	2	BBSR
+Aditya	DBA	1	BNG
+Ravinder	Java	2	BBSR
+Sunil	C#	1	BBSR
+Anil	ASP	2	BNG
+Mihir	Big Data	3	BBSR
+Mohit	Java	1	BBSR
+Time taken: 0.986 seconds, Fetched: 8 row(s)
+
+hive> select unit,count(*) from emp_details
+    > group by unit;  
+Total MapReduce CPU Time Spent: 4 seconds 760 msec
+OK
+ASP	1
+Big Data	2
+C#	1
+DBA	1
+Java	2
+Web Technology	1
+Time taken: 49.873 seconds, Fetched: 6 row(s)
+
